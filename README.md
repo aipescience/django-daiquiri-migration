@@ -27,9 +27,9 @@ Usage
 The different scripts read parts of the legacy Daiquiri database and create Django fixtures, which they output to `stdout` as JSON. Files can be created using redirects:
 
 ```
-./create_auth_fixture.py > auth.json
-./create_contact_fixture.py > contact.json
-./create_query_fixture.py > query.json
+./create_auth_fixtures.py > auth.json
+./create_contact_fixtures.py > contact.json
+./create_query_fixtures.py > query.json
 ```
 
 The fixtures can then be loaded into the new Daiquiri instace using:
