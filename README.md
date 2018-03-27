@@ -27,9 +27,11 @@ Usage
 The different scripts read parts of the legacy Daiquiri database and create Django fixtures, which they output to `stdout` as JSON. Files can be created using redirects:
 
 ```
-./create_auth_fixtures.py > auth.json
-./create_contact_fixtures.py > contact.json
-./create_query_fixtures.py > query.json
+./fetch_contact_messages > messages.json
+./fetch_groups.py > groups.json
+./fetch_query_examples.py > examples.json
+./fetch_query_jobs.py > jobs.json
+./fetch_users.py > users.json
 ```
 
 The fixtures can then be loaded into the new Daiquiri instace using:
@@ -38,4 +40,4 @@ The fixtures can then be loaded into the new Daiquiri instace using:
 python manage.py loaddata <fixture>
 ```
 
-inside project directory (and activated virtual enviroment) of the already set up Daiquiri app.
+inside project directory (and activated virtual enviroment) of the already set up Daiquiri app. `groups.json` needs to be loaded first, then `users.json`, and the the other fixtures.

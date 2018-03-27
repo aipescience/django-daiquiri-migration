@@ -12,34 +12,6 @@ fixtures = []
 daiquiri_connection = MySQLdb.connect(**DAIQUIRI_DATABASE)
 daiquiri_cursor = daiquiri_connection.cursor()
 
-# query all roles from the daiquiri database
-daiquiri_cursor.execute('''
-    SELECT id, role FROM Auth_Roles
-''')
-
-# fetch roles and sort into dict
-groups = {}
-for row in daiquiri_cursor.fetchall():
-    role_id, role = row
-
-    # only add custom roles
-    if role not in ['guest', 'user', 'admin']:
-        if role_id not in groups:
-            groups[role_id] = {}
-
-        groups[role_id] = role
-
-# create fixtures for group
-for group_id in groups:
-    fixtures.append({
-        'model': 'auth.group',
-        'pk': group_id,
-        'fields': {
-            'name': groups[group_id],
-            'permissions': []
-        }
-    })
-
 # query all details from the daiquiri database
 daiquiri_cursor.execute('''
     SELECT user_id, `key`, value FROM Auth_Details
