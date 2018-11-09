@@ -3,15 +3,13 @@
 import json
 import MySQLdb
 
-from datetime import timedelta
-
-from settings import DAIQUIRI_DATABASE, QUERY_LANGUAGE
+import settings
 
 # init fixture list (will be serialized to json at the end)
 fixtures = []
 
 # get a connection to the daiquiri database
-daiquiri_connection = MySQLdb.connect(**DAIQUIRI_DATABASE)
+daiquiri_connection = MySQLdb.connect(**settings.LEGACY_DATABASE)
 daiquiri_cursor = daiquiri_connection.cursor()
 
 # query all messages from the daiquiri database
@@ -42,7 +40,7 @@ for example_id, name, query, description, role_id, order, role in daiquiri_curso
             'order': order,
             'name': name,
             'description': description,
-            'query_language': QUERY_LANGUAGE,
+            'query_language': settings.QUERY_EXAMPLE_LANGUAGE,
             'query_string': query,
             'access_level': access_level,
             'groups': groups

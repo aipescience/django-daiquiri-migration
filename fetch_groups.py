@@ -3,13 +3,13 @@
 import json
 import MySQLdb
 
-from settings import DAIQUIRI_DATABASE, DATE_JOINED
+import settings
 
 # init fixture list (will be serialized to json at the end)
 fixtures = []
 
 # get a connection to the daiquiri database
-daiquiri_connection = MySQLdb.connect(**DAIQUIRI_DATABASE)
+daiquiri_connection = MySQLdb.connect(**settings.LEGACY_DATABASE)
 daiquiri_cursor = daiquiri_connection.cursor()
 
 # query all roles from the daiquiri database

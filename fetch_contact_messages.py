@@ -5,13 +5,13 @@ import MySQLdb
 
 from datetime import timedelta
 
-from settings import DAIQUIRI_DATABASE
+import settings
 
 # init fixture list (will be serialized to json at the end)
 fixtures = []
 
 # get a connection to the daiquiri database
-daiquiri_connection = MySQLdb.connect(**DAIQUIRI_DATABASE)
+daiquiri_connection = MySQLdb.connect(**settings.LEGACY_DATABASE)
 daiquiri_cursor = daiquiri_connection.cursor()
 
 # query all messages from the daiquiri database
@@ -26,7 +26,12 @@ for row in daiquiri_cursor.fetchall():
 
     author = '%s %s' % (first_name, last_name)
     status = 'ACTIVE' if status_id == 1 else 'CLOSED'
-    created = (created - timedelta(hours=1)).isoformat() + 'Z'
+
+    if created:
+        created = (created - timedelta(hours=1)).isoformat() + 'Z'
+    else:
+        created = settings.DEFAULT_CONTRACT_MESSAGE_DATE
+
     user_id = user_id if user_id > 0 else None
 
     # create a contactmessage fixture
