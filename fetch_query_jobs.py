@@ -58,6 +58,9 @@ for table_name, schema_name, query, user_id, status_id, type_id, ip, group_id, t
     for replacement in settings.QUERY_STRING_REPLACEMENTS:
         query_string = query_string.replace(*replacement)
 
+    # print some output
+    print(job_id, user_id, query_string)
+
     # create a job fixture
     fixtures.append({
         'model': 'daiquiri_jobs.job',
@@ -98,4 +101,5 @@ for table_name, schema_name, query, user_id, status_id, type_id, ip, group_id, t
         }
     })
 
-print(json.dumps(fixtures, indent=2, sort_keys=True))
+with open('jobs.json', 'w') as f:
+    f.write(json.dumps(fixtures, indent=2, sort_keys=True))

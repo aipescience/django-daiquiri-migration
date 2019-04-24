@@ -32,6 +32,9 @@ for example_id, name, query, description, role_id, order, role in daiquiri_curso
         access_level = 'PRIVATE'
         groups = [role_id]
 
+    # print some output
+    print(example_id, query)
+
     # create a contactmessage fixture
     fixtures.append({
         'model': 'daiquiri_query.example',
@@ -47,4 +50,5 @@ for example_id, name, query, description, role_id, order, role in daiquiri_curso
         }
     })
 
-print(json.dumps(fixtures, indent=2, sort_keys=True))
+with open('examples.json', 'w') as f:
+    f.write(json.dumps(fixtures, indent=2, sort_keys=True))

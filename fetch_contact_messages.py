@@ -34,6 +34,9 @@ for row in daiquiri_cursor.fetchall():
 
     user_id = user_id if user_id > 0 else None
 
+    # print some output
+    print(message_id, subject)
+
     # create a contactmessage fixture
     fixtures.append({
         'model': 'daiquiri_contact.contactmessage',
@@ -49,4 +52,5 @@ for row in daiquiri_cursor.fetchall():
         }
     })
 
-print(json.dumps(fixtures, indent=2, sort_keys=True))
+with open('messages.json', 'w') as f:
+    f.write(json.dumps(fixtures, indent=2, sort_keys=True))

@@ -32,14 +32,14 @@ Once `settings.py` is complete, you can use `./check.py` to check the connection
 Usage
 -----
 
-The different scripts read parts of the legacy Daiquiri database and create Django fixtures, which they output to `stdout` as JSON. Files can be created using redirects:
+The different scripts read parts of the legacy Daiquiri database and create Django fixtures:
 
 ```
-./fetch_groups.py > groups.json
-./fetch_users.py > users.json
-./fetch_contact_messages.py > messages.json
-./fetch_query_examples.py > examples.json
-./fetch_query_jobs.py > jobs.json
+./fetch_groups.py
+./fetch_users.py
+./fetch_contact_messages.py
+./fetch_query_examples.py
+./fetch_query_jobs.py
 ```
 
 The fixtures can then be loaded into the new Daiquiri instace using:

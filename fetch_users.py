@@ -60,12 +60,15 @@ for row in daiquiri_cursor.fetchall():
     else:
         groups = []
 
+    # print some output
+    print(user_id, username)
+
     # create a user fixture
     fixtures.append({
         'model': 'auth.user',
         'pk': user_id,
         'fields': {
-            'password': 'crypt_sha512' + password,
+            #'password': 'crypt_sha512' + password,
             'last_login': None,
             'is_superuser': is_superuser,
             'username': username,
@@ -105,4 +108,5 @@ for row in daiquiri_cursor.fetchall():
         }
     })
 
-print(json.dumps(fixtures, indent=2, sort_keys=True))
+with open('users.json', 'w') as f:
+    f.write(json.dumps(fixtures, indent=2, sort_keys=True))

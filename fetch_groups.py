@@ -23,6 +23,10 @@ for role_id, role in daiquiri_cursor.fetchall():
 
     # only add custom roles
     if role not in ['guest', 'user', 'admin']:
+        # print some output
+        print(role_id, role)
+
+        # create a group fixture
         fixtures.append({
             'model': 'auth.group',
             'pk': role_id,
@@ -32,4 +36,5 @@ for role_id, role in daiquiri_cursor.fetchall():
             }
         })
 
-print(json.dumps(fixtures, indent=2, sort_keys=True))
+with open('groups.json', 'w') as f:
+    f.write(json.dumps(fixtures, indent=2, sort_keys=True))
