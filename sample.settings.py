@@ -1,23 +1,29 @@
 LEGACY_DATABASE = {
-    'db': '',
+    'db': 'daiquiri_web',
     'user': '',
+    'password': '',
     'host': '',
-    'read_default_file': '~/.my.cnf'
+    'port': 3306
 }
 
 DJANGO_DATABASE = {
-    'db': '',
+    'db': 'daiquiri_app',
     'user': '',
+    'password': '',
     'host': '',
-    'read_default_file': '~/.my.cnf'
+    'port': 3306
 }
 
 WORDPRESS_DATABASE = {
-    'db': '',
+    'db': 'daiquiri_wp',
     'user': '',
+    'password': '',
     'host': '',
-    'read_default_file': '~/.my.cnf'
+    'port': 3306
 }
+
+# custom user detail keys
+AUTH_DETAIL_KEYS = ['affiliation']
 
 # date to be used as date_joined for all users
 DATE_JOINED = '2018-04-01T00:00:00Z'
@@ -32,22 +38,22 @@ QUERY_EXAMPLE_LANGUAGE = 'mysql'
 QUERY_JOB_LANGUAGE = 'postgresql'
 
 # map status -> phase (direct query)
-QUERY_JOB_PHASES = {
-    1: 'COMPLETED',  # success
-    2: 'ERROR',      # timeout
-    3: 'ARCHIVED'    # removed
-}
+# QUERY_JOB_PHASES = {
+#     1: 'COMPLETED',  # success
+#     2: 'ERROR',      # timeout
+#     3: 'ARCHIVED'    # removed
+# }
 
 # map status -> phase (qqueue)
-QUERY_JOB_PHASES = {
-    0: 'QUEUED',     # queued
-    1: 'EXECUTING',  # running
-    2: 'ARCHIVED',   # removed
-    3: 'ERROR',      # error
-    4: 'COMPLETED',  # success
-    5: 'ERROR',      # timeout
-    6: 'ABORT'       # killed
-}
+# QUERY_JOB_PHASES = {
+#     0: 'QUEUED',     # queued
+#     1: 'EXECUTING',  # running
+#     2: 'ARCHIVED',   # removed
+#     3: 'ERROR',      # error
+#     4: 'COMPLETED',  # success
+#     5: 'ERROR',      # timeout
+#     6: 'ABORT'       # killed
+# }
 
 # map type_id -> job_type
 QUERY_JOB_TYPES = {
@@ -57,13 +63,11 @@ QUERY_JOB_TYPES = {
 
 # replacements for the user schema
 QUERY_USER_SCHEMA_REPLACEMENTS = (
-    ('plates_user_', 'applause_user_'),
+    ('foo_user_', 'bar_user_'),
 )
 
 # replacements for the query string
 QUERY_STRING_REPLACEMENTS = (
     ('`', '"'),
     ('log10', 'log'),
-    ('APPLAUSE_DR1', 'applause_dr1'),
-    ('APPLAUSE_DR2', 'applause_dr2')
 )

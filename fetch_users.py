@@ -43,6 +43,14 @@ for row in daiquiri_cursor.fetchall():
     first_name = details[user_id].pop('firstname')
     last_name = details[user_id].pop('lastname')
 
+    user_details = {}
+    user_attributes = {}
+    for key, value in details[user_id].items():
+        if key in settings.AUTH_DETAIL_KEYS:
+            user_details[key.lower()] = value
+        else:
+            user_attributes[key.lower()] = value
+
     is_superuser = (role == 'admin')
     is_staff = is_superuser
     is_active = (status == 'active')
@@ -72,8 +80,6 @@ for row in daiquiri_cursor.fetchall():
         }
     })
 
-    # print(details[user_id])
-
     # create a profile fixture
     fixtures.append({
         'model': 'daiquiri_auth.profile',
@@ -82,8 +88,8 @@ for row in daiquiri_cursor.fetchall():
             'user': user_id,
             'is_pending': False,
             'is_confirmed': False,
-            'details': details[user_id],
-            'attributes': None
+            'details': user_details,
+            'attributes': user_attributes
         }
     })
 
